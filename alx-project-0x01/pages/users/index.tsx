@@ -4,43 +4,22 @@ import UserCard from "@/components/common/UserCard";
 import UserModal from "@/components/common/UserModal";
 import { UserData, UserProps } from "@/interfaces";
 
-interface UsersPageProps {
-  posts: UserProps[]; // fetched from getStaticProps
+interface UsersProps {
+  posts: UserProps[];  // note: still called posts in prop per task instructions
 }
 
-const Users: React.FC<UsersPageProps> = ({ posts }) => {
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [users, setUsers] = useState<UserData[]>(posts);
-
-  const handleAddUser = (newUser: UserData) => {
-    const userWithId = { ...newUser, id: users.length + 1 };
-    setUsers([...users, userWithId]);
-  };
-
+const Users: React.FC<UsersProps> = ({ posts }) => {
   return (
     <div className="flex flex-col h-screen">
       <Header />
       <main className="p-4">
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-semibold">Users</h1>
-          <button
-            onClick={() => setModalOpen(true)}
-            className="bg-blue-700 px-4 py-2 rounded-full text-white"
-          >
-            Add User
-          </button>
-        </div>
-
+        <h1 className="text-2xl font-semibold mb-4">User List</h1>
         <div className="grid grid-cols-3 gap-4">
-          {users.map((user) => (
-            <UserCard key={user.id} user={user} />
+          {posts.map((user) => (
+            <UserCard key={user.id} {...user} />
           ))}
         </div>
       </main>
-
-      {isModalOpen && (
-        <UserModal onClose={() => setModalOpen(false)} onAddUser={handleAddUser} />
-      )}
     </div>
   );
 };
