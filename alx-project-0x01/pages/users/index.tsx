@@ -12,10 +12,10 @@ const Users: React.FC<UsersPageProps> = ({ posts }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [users, setUsers] = useState<UserData[]>(posts);
 
- const handleAddUser = (newUser: UserData) => {
-  setUsers((prev) => [...prev, { ...newUser, id: prev.length + 1 }]);
-};
-
+  const handleAddUser = (newUser: UserData) => {
+    const userWithId = { ...newUser, id: users.length + 1 };
+    setUsers([...users, userWithId]);
+  };
 
   return (
     <div className="flex flex-col h-screen">
