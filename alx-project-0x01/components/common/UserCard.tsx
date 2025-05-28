@@ -17,13 +17,13 @@ const UserCard: React.FC<UserProps> = ({
       </h2>
       <p className="text-gray-700 mb-1">Email: {email}</p>
       <p className="text-gray-700 mb-1">
-        Address: {address.street}, {address.suite}, {address.city} - {address.zipcode}
+        Address: {address?.street}, {address?.suite}, {address?.city} - {address?.zipcode}
       </p>
       <p className="text-gray-700 mb-1">Phone: {phone}</p>
       <p className="text-gray-700 mb-1">Website: {website}</p>
       <p className="text-gray-700 font-medium mt-4">Company:</p>
-      <p className="text-gray-600">{company.name}</p>
-      <p className="italic text-gray-500 text-sm">"{company.catchPhrase}"</p>
+      <p className="text-gray-600">{company?.name || "N/A"}</p>
+      <p className="italic text-gray-500 text-sm">"{company?.catchPhrase || ""}"</p>
     </div>
   );
 };
